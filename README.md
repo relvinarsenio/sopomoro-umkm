@@ -1,36 +1,155 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sopomoro - Website Promosi UMKM
 
-## Getting Started
+Website promosi untuk UMKM Sopomoro yang menjual keripik tradisional Indonesia dengan berbagai varian rasa.
 
-First, run the development server:
+## 🌟 Fitur
 
+- **Responsive Design**: Tampilan yang optimal di desktop dan mobile
+- **Modern UI**: Desain modern dengan Tailwind CSS
+- **Product Showcase**: Galeri produk dengan detail lengkap
+- **Contact Form**: Form kontak untuk komunikasi dengan pelanggan
+- **SEO Optimized**: Optimasi SEO untuk mesin pencari
+
+## 🛠️ Teknologi
+
+- **Next.js 15**: Framework React dengan App Router
+- **TypeScript**: Type-safe JavaScript
+- **Tailwind CSS**: Utility-first CSS framework
+- **React**: Library JavaScript untuk UI
+
+## 🚀 Menjalankan Project
+
+### Prerequisites
+
+Pastikan Anda sudah menginstall:
+- Node.js (versi 18 atau lebih baru)
+- npm atau yarn
+
+### Instalasi
+
+1. Clone repository ini:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd sopomoro-website
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+# atau
+yarn install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Jalankan development server:
+```bash
+npm run dev
+# atau
+yarn dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Buka [http://localhost:3000](http://localhost:3000) di browser Anda.
 
-## Learn More
+## 📁 Struktur Project
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/
+│   ├── globals.css       # Global styles
+│   ├── layout.tsx        # Root layout
+│   ├── page.tsx          # Homepage
+│   └── products/
+│       └── page.tsx      # Products page
+├── components/
+│   ├── Header.tsx        # Header component
+│   └── Footer.tsx        # Footer component
+└── ...
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Kustomisasi
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Mengganti Warna Brand
+Edit file `tailwind.config.js` untuk mengubah warna utama:
 
-## Deploy on Vercel
+```javascript
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        'brand-orange': '#ea580c',
+        'brand-yellow': '#fbbf24',
+      }
+    }
+  }
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Menambah Produk Baru
+Edit array `products` di file `src/app/products/page.tsx`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```typescript
+const products = [
+  {
+    id: 1,
+    name: "Nama Produk",
+    price: "Rp XX.000",
+    image: "🥔",
+    description: "Deskripsi produk...",
+    variants: ["100g", "250g"],
+    ingredients: "Bahan-bahan..."
+  },
+  // Tambah produk baru di sini
+];
+```
+
+### Mengganti Informasi Kontak
+Update informasi kontak di komponen Footer dan halaman utama:
+- Nomor WhatsApp
+- Email
+- Alamat
+- Social media links
+
+## 📱 Fitur Mobile
+
+- Hamburger menu untuk navigasi mobile
+- Touch-friendly buttons
+- Optimized image loading
+- Responsive grid layout
+
+## 🔧 Build untuk Production
+
+```bash
+npm run build
+npm start
+```
+
+## 📝 To-Do List
+
+- [ ] Tambah foto produk asli (ganti emoji placeholder)
+- [ ] Integrasi WhatsApp untuk pemesanan
+- [ ] Tambah sistem review pelanggan
+- [ ] Implementasi shopping cart
+- [ ] Tambah blog/artikel
+- [ ] Integrasi pembayaran online
+
+## 🤝 Kontribusi
+
+1. Fork project ini
+2. Buat feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit perubahan (`git commit -m 'Add some AmazingFeature'`)
+4. Push ke branch (`git push origin feature/AmazingFeature`)
+5. Buat Pull Request
+
+## 📞 Kontak
+
+**Sopomoro UMKM**
+- WhatsApp: +62 812-3456-7890
+- Email: info@sopomoro.com
+- Alamat: Jl. Raya No. 123, Kota Anda
+
+## 📄 License
+
+Project ini dibuat untuk keperluan promosi UMKM Sopomoro.
+
+---
+
+Dibuat dengan ❤️ untuk UMKM Indonesia

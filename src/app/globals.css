@@ -24,3 +24,47 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Smooth scrolling untuk semua elemen */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset untuk anchor links agar tidak tertutup sticky header */
+/* Menggunakan scroll-margin-top untuk modern browsers */
+#products,
+#about,
+#contact {
+  scroll-margin-top: 80px; /* Tinggi header + padding */
+}
+
+/* Fallback untuk browser lama menggunakan pseudo-element */
+@supports not (scroll-margin-top: 80px) {
+  #products::before,
+  #about::before,
+  #contact::before {
+    content: '';
+    display: block;
+    height: 80px;
+    margin-top: -80px;
+    visibility: hidden;
+  }
+}
+
+/* Tambahan untuk mobile - header mobile sedikit lebih pendek */
+@media (max-width: 768px) {
+  #products,
+  #about,
+  #contact {
+    scroll-margin-top: 70px;
+  }
+  
+  @supports not (scroll-margin-top: 70px) {
+    #products::before,
+    #about::before,
+    #contact::before {
+      height: 70px;
+      margin-top: -70px;
+    }
+  }
+}

@@ -1,0 +1,74 @@
+# Konfigurasi Cloudflare Pages untuk Sopomoro UMKM Website
+name = "sopomoro-umkm"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+
+[env.production]
+# Cloudflare Pages akan otomatis detect Next.js dan build
+# Build command: npm run build
+# Build output directory: out
+
+# Environment variables (jika diperlukan di masa depan)
+# [env.production.vars]
+# NEXT_PUBLIC_SITE_URL = "https://sopomoro-umkm.pages.dev"
+# NEXT_PUBLIC_WHATSAPP_NUMBER = "6281234567890"
+
+# Security dan Performance Headers
+[[headers]]
+for = "/*"
+[headers.values]
+X-Frame-Options = "DENY"
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "strict-origin-when-cross-origin"
+X-XSS-Protection = "1; mode=block"
+Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Cache untuk static assets dengan versioning
+[[headers]]
+for = "/_next/static/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache untuk images dan fonts
+[[headers]]
+for = "*.png"
+[headers.values]
+Cache-Control = "public, max-age=86400"
+
+[[headers]]
+for = "*.jpg"
+[headers.values]
+Cache-Control = "public, max-age=86400"
+
+[[headers]]
+for = "*.jpeg"
+[headers.values]
+Cache-Control = "public, max-age=86400"
+
+[[headers]]
+for = "*.webp"
+[headers.values]
+Cache-Control = "public, max-age=86400"
+
+# Cache untuk favicon
+[[headers]]
+for = "/favicon.ico"
+[headers.values]
+Cache-Control = "public, max-age=86400"
+
+# Cache untuk manifest dan service files
+[[headers]]
+for = "/manifest.webmanifest"
+[headers.values]
+Cache-Control = "public, max-age=86400"
+
+[[headers]]
+for = "/sitemap.xml"
+[headers.values]
+Cache-Control = "public, max-age=86400"
+
+[[headers]]
+for = "/robots.txt"
+[headers.values]
+Cache-Control = "public, max-age=86400"

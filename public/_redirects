@@ -1,0 +1,3 @@
+# Cloudflare Pages redirects dan rewrite rules
+# Semua routes yang tidak ditemukan diarahkan ke 404
+/*    /404.html   404
