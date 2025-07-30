@@ -8,7 +8,6 @@ import {
   MapPin, 
   Instagram, 
   Facebook,
-  Leaf,
   ChefHat,
   Phone,
   Apple,
@@ -17,10 +16,7 @@ import {
   ArrowLeft,
   Star,
   Heart,
-  ShoppingCart,
-  Award,
-  CheckCircle,
-  Filter
+  ShoppingCart
 } from "lucide-react";
 
 export default function ProductsClient() {
@@ -305,7 +301,7 @@ export default function ProductsClient() {
             🔥 <span className="text-gradient">Produk Terpopuler</span>
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {popularProducts.map((product, index) => {
+            {popularProducts.map((product) => {
               const IconComponent = product.icon;
               return (
                 <div key={product.id} className="group">
