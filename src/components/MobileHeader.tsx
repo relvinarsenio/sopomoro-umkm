@@ -20,7 +20,7 @@ export default function Header({ currentPage = "home" }: HeaderProps) {
             <h1 className="text-2xl font-bold text-orange-600">Sopomoro</h1>
           </Link>
           
-          {/* Desktop Menu */}
+          
           <div className="hidden md:flex space-x-6">
             <Link 
               href="/" 
@@ -64,7 +64,7 @@ export default function Header({ currentPage = "home" }: HeaderProps) {
             </Link>
           </div>
           
-          {/* Desktop WhatsApp Button */}
+          
           <a 
             href="https://wa.me/6281234567890?text=Halo%20Sopomoro,%20saya%20ingin%20memesan%20keripik"
             target="_blank"
@@ -74,7 +74,7 @@ export default function Header({ currentPage = "home" }: HeaderProps) {
             Pesan via WhatsApp
           </a>
           
-          {/* Mobile menu button */}
+          
           <button 
             className="md:hidden text-gray-700 hover:text-orange-600 p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -89,7 +89,7 @@ export default function Header({ currentPage = "home" }: HeaderProps) {
           </button>
         </div>
         
-        {/* Mobile Menu */}
+        
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4 border-t border-gray-200">
             <div className="flex flex-col space-y-3 pt-4">

@@ -14,15 +14,20 @@ import {
   Apple,
   Flame,
   Cookie,
-  ArrowLeft
+  ArrowLeft,
+  Star,
+  Heart,
+  ShoppingCart,
+  Award,
+  CheckCircle,
+  Filter
 } from "lucide-react";
 
 export default function ProductsClient() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
-  // Helper function untuk scroll ke section di homepage
   const scrollToSection = (sectionId: string) => {
-    // Redirect ke homepage dengan hash
     window.location.href = `/#${sectionId}`;
   };
 
@@ -33,9 +38,14 @@ export default function ProductsClient() {
       price: "Rp 15.000",
       icon: Apple,
       color: "text-yellow-600",
+      bgColor: "from-yellow-100 to-amber-100",
       description: "Keripik pisang renyah dengan rasa manis alami, dibuat dari pisang pilihan terbaik.",
       variants: ["100g", "250g", "500g"],
-      ingredients: "Pisang, minyak kelapa, gula aren, garam"
+      ingredients: "Pisang, minyak kelapa, gula aren, garam",
+      category: "pisang",
+      rating: 4.9,
+      sold: 150,
+      isPopular: true
     },
     {
       id: 2,
@@ -43,19 +53,29 @@ export default function ProductsClient() {
       price: "Rp 12.000",
       icon: Flame,
       color: "text-red-600",
+      bgColor: "from-red-100 to-orange-100",
       description: "Keripik singkong dengan bumbu pedas yang menggugah selera dan renyah di setiap gigitan.",
       variants: ["100g", "250g", "500g"],
-      ingredients: "Singkong, minyak kelapa, cabai merah, bawang putih, garam"
+      ingredients: "Singkong, minyak kelapa, cabai merah, bawang putih, garam",
+      category: "singkong",
+      rating: 4.8,
+      sold: 120,
+      isPopular: false
     },
     {
       id: 3,
       name: "Keripik Ubi Manis",
       price: "Rp 18.000",
-      icon: Cookie,
+      icon: Heart,
       color: "text-purple-600",
+      bgColor: "from-purple-100 to-pink-100",
       description: "Keripik ubi manis yang gurih dan manis, kaya akan vitamin dan serat alami.",
       variants: ["100g", "250g", "500g"],
-      ingredients: "Ubi jalar ungu, minyak kelapa, gula aren, garam"
+      ingredients: "Ubi jalar ungu, minyak kelapa, gula aren, garam",
+      category: "ubi",
+      rating: 4.9,
+      sold: 89,
+      isPopular: true
     },
     {
       id: 4,
@@ -63,9 +83,14 @@ export default function ProductsClient() {
       price: "Rp 16.000",
       icon: Flame,
       color: "text-orange-600",
+      bgColor: "from-orange-100 to-red-100",
       description: "Keripik talas dengan bumbu balado yang pedas dan gurih, perpaduan cita rasa yang sempurna.",
       variants: ["100g", "250g"],
-      ingredients: "Talas, minyak kelapa, cabai balado, tomat, bawang merah"
+      ingredients: "Talas, minyak kelapa, cabai balado, tomat, bawang merah",
+      category: "talas",
+      rating: 4.7,
+      sold: 67,
+      isPopular: false
     },
     {
       id: 5,
@@ -73,101 +98,128 @@ export default function ProductsClient() {
       price: "Rp 14.000",
       icon: Apple,
       color: "text-green-600",
+      bgColor: "from-green-100 to-emerald-100",
       description: "Keripik nangka muda yang renyah dengan cita rasa gurih dan sedikit manis.",
       variants: ["100g", "250g"],
-      ingredients: "Nangka muda, minyak kelapa, kunyit, garam, daun jeruk"
+      ingredients: "Nangka muda, minyak kelapa, kunyit, garam, daun jeruk",
+      category: "nangka",
+      rating: 4.6,
+      sold: 45,
+      isPopular: false
     },
     {
       id: 6,
       name: "Mix Keripik Special",
       price: "Rp 25.000",
-      icon: Cookie,
+      icon: Star,
       color: "text-amber-600",
-      description: "Paket kombinasi berbagai keripik pilihan dalam satu kemasan.",
+      bgColor: "from-amber-100 to-yellow-100",
+      description: "Paket kombinasi berbagai keripik pilihan dalam satu kemasan spesial.",
       variants: ["300g", "500g"],
-      ingredients: "Campuran pisang, singkong, ubi, talas dengan berbagai bumbu"
+      ingredients: "Campuran pisang, singkong, ubi, talas dengan berbagai bumbu",
+      category: "mix",
+      rating: 5.0,
+      sold: 230,
+      isPopular: true
     },
     {
       id: 7,
       name: "Keripik Pisang Coklat",
       price: "Rp 17.000",
-      icon: Apple,
+      icon: Cookie,
       color: "text-amber-700",
-      description: "Keripik pisang dengan balutan coklat manis yang lezat.",
+      bgColor: "from-amber-100 to-brown-100",
+      description: "Keripik pisang dengan balutan coklat manis yang lezat dan menggoda.",
       variants: ["100g", "250g"],
-      ingredients: "Pisang, minyak kelapa, coklat susu, gula"
+      ingredients: "Pisang, minyak kelapa, coklat susu, gula",
+      category: "pisang",
+      rating: 4.8,
+      sold: 95,
+      isPopular: false
     },
     {
       id: 8,
-      name: "Keripik Tempe Gurih",
-      price: "Rp 13.000",
-      icon: Leaf,
-      color: "text-emerald-600",
-      description: "Keripik tempe renyah dengan bumbu gurih yang kaya protein.",
-      variants: ["100g", "250g"],
-      ingredients: "Tempe segar, minyat kelapa, bawang putih, ketumbar, garam"
-    },
-    {
-      id: 9,
-      name: "Keripik Tahu Pedas",
-      price: "Rp 11.000",
+      name: "Keripik Tahu Krispy",
+      price: "Rp 14.000",
       icon: ChefHat,
-      color: "text-orange-500",
-      description: "Keripik tahu dengan bumbu pedas yang menggigit dan gurih.",
-      variants: ["100g", "200g"],
-      ingredients: "Tahu putih, minyak kelapa, cabai rawit, bawang merah, garam"
+      color: "text-blue-600",
+      bgColor: "from-blue-100 to-cyan-100",
+      description: "Tahu segar yang digoreng hingga krispy dengan bumbu spesial yang gurih.",
+      variants: ["100g", "250g"],
+      ingredients: "Tahu segar, minyak kelapa, bumbu spesial, garam",
+      category: "tahu",
+      rating: 4.5,
+      sold: 78,
+      isPopular: false
     }
   ];
 
+  const categories = [
+    { id: "all", name: "Semua Produk", count: products.length },
+    { id: "pisang", name: "Keripik Pisang", count: products.filter(p => p.category === "pisang").length },
+    { id: "singkong", name: "Keripik Singkong", count: products.filter(p => p.category === "singkong").length },
+    { id: "ubi", name: "Keripik Ubi", count: products.filter(p => p.category === "ubi").length },
+    { id: "mix", name: "Paket Mix", count: products.filter(p => p.category === "mix").length }
+  ];
+
+  const filteredProducts = selectedCategory === "all" 
+    ? products 
+    : products.filter(product => product.category === selectedCategory);
+
+  const popularProducts = products.filter(product => product.isPopular);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-50">
-      {/* Mobile-Friendly Header */}
-      <header className="bg-white shadow-md sticky top-0 z-50">
+    <div className="min-h-screen gradient-hero">
+      
+      <header className="glass sticky top-0 z-50 border-b border-orange-200">
         <nav className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-orange-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg sm:text-xl">S</span>
+            <Link href="/" className="flex items-center space-x-3 group">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 gradient-primary rounded-full flex items-center justify-center shadow-medium group-hover:shadow-large transition-all duration-300 group-hover:scale-110">
+                <span className="text-white font-bold text-xl sm:text-2xl">S</span>
               </div>
-              <h1 className="text-xl sm:text-2xl font-bold text-orange-600">Sopomoro</h1>
+              <div>
+                <h1 className="text-xl sm:text-2xl font-bold text-gradient">Sopomoro</h1>
+                <p className="text-xs text-orange-600 font-medium">Keripik Tradisional</p>
+              </div>
             </Link>
             
-            {/* Desktop Menu */}
-            <div className="hidden md:flex space-x-6">
-              <Link href="/" className="text-gray-700 hover:text-orange-600 transition-colors">Beranda</Link>
-              <button 
-                onClick={() => scrollToSection('products')} 
-                className="text-gray-700 hover:text-orange-600 transition-colors"
-              >
+            
+            <div className="hidden md:flex space-x-8">
+              <Link href="/" className="text-gray-700 hover:text-orange-600 transition-colors font-medium">
+                Beranda
+              </Link>
+              <Link href="/products" className="text-orange-600 font-semibold hover:text-orange-700 transition-colors">
                 Produk
-              </button>
+              </Link>
               <button 
                 onClick={() => scrollToSection('about')} 
-                className="text-gray-700 hover:text-orange-600 transition-colors"
+                className="text-gray-700 hover:text-orange-600 transition-colors font-medium"
               >
                 Tentang
               </button>
               <button 
                 onClick={() => scrollToSection('contact')} 
-                className="text-gray-700 hover:text-orange-600 transition-colors"
+                className="text-gray-700 hover:text-orange-600 transition-colors font-medium"
               >
                 Kontak
               </button>
             </div>
             
-            {/* Desktop WhatsApp Button */}
+            
             <a 
               href="https://wa.me/6281234567890?text=Halo%20Sopomoro,%20saya%20ingin%20memesan%20keripik"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:inline-block bg-orange-500 text-white px-4 sm:px-6 py-2 rounded-full hover:bg-orange-600 transition-colors text-sm lg:text-base"
+              className="hidden md:inline-flex items-center space-x-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full hover:from-green-600 hover:to-green-700 transition-all duration-300 shadow-medium hover:shadow-large hover:scale-105 font-semibold"
             >
-              Pesan via WhatsApp
+              <MessageCircle className="w-5 h-5" />
+              <span>Pesan via WhatsApp</span>
             </a>
             
-            {/* Mobile menu button */}
+            
             <button 
-              className="md:hidden text-gray-700 hover:text-orange-600 p-2"
+              className="md:hidden text-gray-700 hover:text-orange-600 p-2 rounded-lg hover:bg-orange-50 transition-all duration-300"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -179,32 +231,33 @@ export default function ProductsClient() {
             </button>
           </div>
           
-          {/* Mobile Menu */}
+          
           {isMenuOpen && (
-            <div className="md:hidden mt-4 pb-4 border-t border-gray-200">
+            <div className="md:hidden mt-4 pb-4 border-t border-orange-200 animate-fadeInUp">
               <div className="flex flex-col space-y-3 pt-4">
                 <Link 
                   href="/" 
-                  className="block px-4 py-2 rounded-lg text-gray-700 hover:text-orange-600 hover:bg-orange-50 transition-colors"
+                  className="block px-4 py-3 rounded-xl text-gray-700 hover:text-orange-600 hover:bg-orange-50 transition-all duration-300"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Beranda
                 </Link>
-                <button 
-                  onClick={() => scrollToSection('products')}
-                  className="block w-full text-left px-4 py-2 rounded-lg text-gray-700 hover:text-orange-600 hover:bg-orange-50 transition-colors"
+                <Link 
+                  href="/products"
+                  className="block px-4 py-3 rounded-xl text-orange-600 font-semibold bg-orange-50 shadow-soft"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Produk
-                </button>
+                </Link>
                 <button 
                   onClick={() => scrollToSection('about')}
-                  className="block w-full text-left px-4 py-2 rounded-lg text-gray-700 hover:text-orange-600 hover:bg-orange-50 transition-colors"
+                  className="block w-full text-left px-4 py-3 rounded-xl text-gray-700 hover:text-orange-600 hover:bg-orange-50 transition-all duration-300"
                 >
                   Tentang
                 </button>
                 <button 
                   onClick={() => scrollToSection('contact')}
-                  className="block w-full text-left px-4 py-2 rounded-lg text-gray-700 hover:text-orange-600 hover:bg-orange-50 transition-colors"
+                  className="block w-full text-left px-4 py-3 rounded-xl text-gray-700 hover:text-orange-600 hover:bg-orange-50 transition-all duration-300"
                 >
                   Kontak
                 </button>
@@ -212,10 +265,11 @@ export default function ProductsClient() {
                   href="https://wa.me/6281234567890?text=Halo%20Sopomoro,%20saya%20ingin%20memesan%20keripik"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-orange-500 text-white px-4 py-3 rounded-full hover:bg-orange-600 transition-colors text-center font-medium"
+                  className="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-3 rounded-full hover:from-green-600 hover:to-green-700 transition-all duration-300 text-center font-semibold shadow-medium flex items-center justify-center space-x-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Pesan via WhatsApp
+                  <MessageCircle className="w-5 h-5" />
+                  <span>Pesan via WhatsApp</span>
                 </a>
               </div>
             </div>
@@ -223,178 +277,264 @@ export default function ProductsClient() {
         </nav>
       </header>
 
-      {/* Breadcrumb & Hero Section */}
-      <section className="container mx-auto px-4 py-6 sm:py-12">
-        {/* Breadcrumb */}
-        <div className="flex items-center space-x-2 text-sm sm:text-base text-gray-600 mb-6 sm:mb-8">
-          <Link href="/" className="hover:text-orange-600 transition-colors">Beranda</Link>
-          <span>›</span>
-          <span className="text-orange-600 font-medium">Semua Produk</span>
-        </div>
-
-        <div className="text-center mb-8 sm:mb-12">
+      
+      <section className="container mx-auto px-4 py-12 sm:py-16">
+        <div className="text-center mb-12 animate-fadeInUp">
           <Link 
             href="/"
-            className="inline-flex items-center space-x-2 text-orange-600 hover:text-orange-700 transition-colors mb-4"
+            className="inline-flex items-center space-x-2 text-orange-600 hover:text-orange-700 mb-6 font-medium transition-colors"
           >
-            <ArrowLeft className="w-4 h-4" />
-            <span className="text-sm sm:text-base">Kembali ke Beranda</span>
+            <ArrowLeft className="w-5 h-5" />
+            <span>Kembali ke Beranda</span>
           </Link>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 sm:mb-6">
-            Semua Produk <span className="text-orange-500">Sopomoro</span>
+          
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800 mb-6 leading-tight">
+            Produk <span className="text-gradient">Unggulan</span>
           </h1>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-            Jelajahi koleksi lengkap keripik tradisional kami dengan berbagai varian rasa yang menggugah selera. 
-            Setiap produk dibuat dengan bahan-bahan pilihan dan resep turun temurun.
+          
+          <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Jelajahi koleksi lengkap keripik tradisional kami dengan berbagai pilihan rasa yang menggugah selera
           </p>
         </div>
       </section>
 
-      {/* Products Grid */}
-      <section className="container mx-auto px-4 pb-12 sm:pb-16">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {products.map((product) => (
-            <div key={product.id} className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 hover:shadow-xl transition-shadow">
-              <div className="w-full h-40 sm:h-48 bg-gradient-to-br from-orange-200 to-yellow-200 rounded-xl flex items-center justify-center mb-4">
-                <div className="text-center">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-2">
-                    <product.icon className={`w-6 h-6 sm:w-8 sm:h-8 ${product.color}`} />
+      
+      <section className="container mx-auto px-4 pb-16">
+        <div className="mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 text-center">
+            🔥 <span className="text-gradient">Produk Terpopuler</span>
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {popularProducts.map((product, index) => {
+              const IconComponent = product.icon;
+              return (
+                <div key={product.id} className="group">
+                  <div className="glass p-6 rounded-3xl shadow-medium hover:shadow-large transition-all duration-300 hover-lift relative overflow-hidden">
+                    <div className="absolute top-4 right-4">
+                      <span className="bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                        POPULER
+                      </span>
+                    </div>
+                    
+                    <div className={`flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${product.bgColor} mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                      <IconComponent className={`w-8 h-8 ${product.color}`} />
+                    </div>
+                    
+                    <h3 className="text-lg font-bold text-gray-800 mb-2 text-center">{product.name}</h3>
+                    
+                    <div className="flex items-center justify-center space-x-2 mb-3">
+                      <div className="flex items-center space-x-1">
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <span className="text-sm text-gray-600 font-medium">{product.rating}</span>
+                      </div>
+                      <span className="text-gray-400">•</span>
+                      <span className="text-sm text-gray-600">{product.sold} terjual</span>
+                    </div>
+                    
+                    <div className="text-center mb-4">
+                      <div className="text-2xl font-bold text-gradient mb-2">{product.price}</div>
+                      <p className="text-gray-600 text-sm leading-relaxed">{product.description}</p>
+                    </div>
+                    
+                    <a 
+                      href={`https://wa.me/6281234567890?text=Halo%20Sopomoro,%20saya%20ingin%20memesan%20${product.name}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center space-x-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white px-4 py-3 rounded-full hover:from-orange-600 hover:to-amber-600 transition-all duration-300 hover:scale-105 font-semibold shadow-medium"
+                    >
+                      <ShoppingCart className="w-4 h-4" />
+                      <span>Pesan Sekarang</span>
+                    </a>
                   </div>
-                  <p className="text-xs sm:text-sm text-gray-600 font-medium">Foto Produk</p>
                 </div>
-              </div>
-              
-              <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">{product.name}</h3>
-              <p className="text-gray-600 mb-4 text-xs sm:text-sm line-clamp-2">{product.description}</p>
-              
-              <div className="mb-4">
-                <p className="text-xs sm:text-sm font-semibold text-gray-700 mb-2">Bahan:</p>
-                <p className="text-xs sm:text-sm text-gray-600">{product.ingredients}</p>
-              </div>
-              
-              <div className="mb-4">
-                <p className="text-xs sm:text-sm font-semibold text-gray-700 mb-2">Ukuran tersedia:</p>
-                <div className="flex flex-wrap gap-1 sm:gap-2">
-                  {product.variants.map((variant, index) => (
-                    <span key={index} className="px-2 py-1 bg-orange-100 text-orange-600 text-xs rounded-full">
-                      {variant}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-                <p className="text-xl sm:text-2xl font-bold text-orange-500">{product.price}</p>
-                <a 
-                  href={`https://wa.me/6281234567890?text=Halo%20Sopomoro,%20saya%20ingin%20memesan%20${encodeURIComponent(product.name)}%20seharga%20${encodeURIComponent(product.price)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto bg-orange-500 text-white px-3 sm:px-4 py-2 rounded-full hover:bg-orange-600 transition-colors inline-block text-xs sm:text-sm font-medium text-center"
-                >
-                  <MessageCircle className="inline w-4 h-4 mr-1" />
-                  Pesan
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="container mx-auto px-4 py-12 sm:py-16">
-        <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 max-w-4xl mx-auto text-center">
-          <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
-            Tertarik dengan produk kami?
-          </h3>
-          <p className="text-gray-600 mb-6 sm:mb-8 text-sm sm:text-base">
-            Hubungi kami sekarang untuk pemesanan atau konsultasi mengenai produk keripik Sopomoro. 
-            Kami siap melayani pesanan dalam jumlah besar maupun kecil dengan kualitas terjamin.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a 
-              href="https://wa.me/6281234567890?text=Halo%20Sopomoro,%20saya%20ingin%20bertanya%20tentang%20produk%20keripik"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-orange-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg hover:bg-orange-600 transition-colors inline-block font-medium"
-            >
-              <MessageCircle className="inline w-5 h-5 mr-2" />
-              WhatsApp Kami
-            </a>
-            <Link href="/#contact" className="border border-orange-500 text-orange-500 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg hover:bg-orange-50 transition-colors inline-block font-medium">
-              Lihat Kontak
-            </Link>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-800 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold">S</span>
-                </div>
-                <h3 className="text-xl font-bold">Sopomoro</h3>
-              </div>
-              <p className="text-gray-400">
-                UMKM keripik terpercaya dengan cita rasa autentik Indonesia.
-              </p>
-            </div>
-            <div>
-              <h4 className="text-lg font-bold mb-4">Kontak</h4>
-              <div className="space-y-2 text-gray-400">
-                <a 
-                  href="https://wa.me/6281234567890"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 hover:text-green-400 transition-colors"
+      
+      <section className="container mx-auto px-4 pb-8">
+        <div className="flex items-center justify-center mb-8">
+          <div className="glass p-2 rounded-2xl">
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 ${
+                    selectedCategory === category.id
+                      ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-medium'
+                      : 'text-gray-600 hover:text-orange-600 hover:bg-orange-50'
+                  }`}
                 >
-                  <Phone className="w-4 h-4" />
-                  <span>+62 812-3456-7890</span>
-                </a>
-                <p className="flex items-center space-x-2">
-                  <MapPin className="w-4 h-4" />
-                  <span>Jl. Raya No. 123, Kota Anda</span>
-                </p>
-              </div>
+                  {category.name} ({category.count})
+                </button>
+              ))}
             </div>
-            <div>
-              <h4 className="text-lg font-bold mb-4">Ikuti Kami</h4>
+          </div>
+        </div>
+      </section>
+
+      
+      <section className="container mx-auto px-4 pb-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {filteredProducts.map((product, index) => {
+            const IconComponent = product.icon;
+            return (
+              <div key={product.id} className="group animate-fadeInScale" style={{animationDelay: `${index * 0.1}s`}}>
+                <div className="glass p-6 rounded-3xl shadow-medium hover:shadow-large transition-all duration-300 hover-lift">
+                  <div className={`flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${product.bgColor} mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <IconComponent className={`w-8 h-8 ${product.color}`} />
+                  </div>
+                  
+                  <h3 className="text-lg font-bold text-gray-800 mb-2 text-center">{product.name}</h3>
+                  
+                  <div className="flex items-center justify-center space-x-2 mb-3">
+                    <div className="flex items-center space-x-1">
+                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                      <span className="text-sm text-gray-600 font-medium">{product.rating}</span>
+                    </div>
+                    <span className="text-gray-400">•</span>
+                    <span className="text-sm text-gray-600">{product.sold} terjual</span>
+                  </div>
+                  
+                  <p className="text-gray-600 text-sm mb-4 text-center leading-relaxed">{product.description}</p>
+                  
+                  <div className="text-center mb-4">
+                    <div className="text-2xl font-bold text-gradient mb-2">{product.price}</div>
+                    <div className="flex flex-wrap gap-1 justify-center">
+                      {product.variants.map((variant, idx) => (
+                        <span key={idx} className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full">
+                          {variant}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <a 
+                    href={`https://wa.me/6281234567890?text=Halo%20Sopomoro,%20saya%20ingin%20memesan%20${product.name}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center space-x-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white px-4 py-3 rounded-full hover:from-orange-600 hover:to-amber-600 transition-all duration-300 hover:scale-105 font-semibold shadow-medium"
+                  >
+                    <ShoppingCart className="w-4 h-4" />
+                    <span>Pesan</span>
+                  </a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      
+      <section className="container mx-auto px-4 py-16">
+        <div className="glass p-12 rounded-3xl text-center shadow-large">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-6">
+            Siap Menikmati <span className="text-gradient">Keripik Lezat?</span>
+          </h2>
+          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            Pesan sekarang dan rasakan kelezatan keripik tradisional berkualitas premium langsung ke rumah Anda!
+          </p>
+          <a 
+            href="https://wa.me/6281234567890?text=Halo%20Sopomoro,%20saya%20ingin%20memesan%20keripik"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center space-x-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-4 px-10 rounded-full hover:from-green-600 hover:to-green-700 transition-all duration-300 hover:scale-105 shadow-large text-lg"
+          >
+            <MessageCircle className="w-6 h-6" />
+            <span>Pesan Sekarang via WhatsApp</span>
+          </a>
+        </div>
+      </section>
+
+      
+      <footer className="bg-gray-900 text-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-8 mb-12">
+            <div className="md:col-span-2">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-12 h-12 gradient-primary rounded-full flex items-center justify-center">
+                  <span className="text-white font-bold text-xl">S</span>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-gradient">Sopomoro</h3>
+                  <p className="text-gray-400">Keripik Tradisional Berkualitas</p>
+                </div>
+              </div>
+              <p className="text-gray-400 mb-6 leading-relaxed">
+                UMKM keripik tradisional Indonesia yang berkomitmen menghadirkan cita rasa autentik 
+                dengan kualitas terbaik. Dibuat dengan resep turun temurun dan bahan pilihan.
+              </p>
               <div className="flex space-x-4">
                 <a 
-                  href="https://wa.me/6281234567890"
+                  href="https://instagram.com/sopomoro.keripik" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors"
-                  aria-label="WhatsApp Sopomoro"
+                  className="w-10 h-10 bg-gradient-to-r from-pink-500 to-red-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300"
                 >
-                  <Phone className="w-5 h-5 text-white" />
+                  <Instagram className="w-5 h-5" />
                 </a>
                 <a 
-                  href="https://instagram.com/sopomoro.keripik"
+                  href="https://facebook.com/sopomoro.keripik" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors"
-                  aria-label="Instagram Sopomoro"
+                  className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300"
                 >
-                  <Instagram className="w-5 h-5 text-white" />
+                  <Facebook className="w-5 h-5" />
                 </a>
                 <a 
-                  href="https://facebook.com/sopomoro.keripik"
+                  href="https://wa.me/6281234567890" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
-                  aria-label="Facebook Sopomoro"
+                  className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300"
                 >
-                  <Facebook className="w-5 h-5 text-white" />
+                  <MessageCircle className="w-5 h-5" />
                 </a>
               </div>
             </div>
+            
+            <div>
+              <h4 className="text-lg font-bold mb-6">Produk</h4>
+              <ul className="space-y-3">
+                <li><span className="text-gray-400 hover:text-orange-400 transition-colors cursor-pointer">Keripik Pisang</span></li>
+                <li><span className="text-gray-400 hover:text-orange-400 transition-colors cursor-pointer">Keripik Singkong</span></li>
+                <li><span className="text-gray-400 hover:text-orange-400 transition-colors cursor-pointer">Keripik Ubi</span></li>
+                <li><span className="text-gray-400 hover:text-orange-400 transition-colors cursor-pointer">Keripik Tahu</span></li>
+                <li><span className="text-gray-400 hover:text-orange-400 transition-colors cursor-pointer">Mix Special</span></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-bold mb-6">Kontak</h4>
+              <ul className="space-y-3">
+                <li className="flex items-center space-x-3">
+                  <Phone className="w-4 h-4 text-orange-400" />
+                  <span className="text-gray-400">+62 812-3456-7890</span>
+                </li>
+                <li className="flex items-center space-x-3">
+                  <MessageCircle className="w-4 h-4 text-green-400" />
+                  <span className="text-gray-400">WhatsApp</span>
+                </li>
+                <li className="flex items-center space-x-3">
+                  <MapPin className="w-4 h-4 text-red-400" />
+                  <span className="text-gray-400">Jakarta, Indonesia</span>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 Sopomoro. Semua hak dilindungi undang-undang.</p>
+          
+          <div className="border-t border-gray-800 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <p className="text-gray-400 mb-4 md:mb-0">
+                © 2024 Sopomoro. Semua hak cipta dilindungi.
+              </p>
+              <div className="flex space-x-6">
+                <span className="text-gray-400 hover:text-orange-400 transition-colors cursor-pointer">Kebijakan Privasi</span>
+                <span className="text-gray-400 hover:text-orange-400 transition-colors cursor-pointer">Syarat & Ketentuan</span>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
